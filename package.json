@@ -8,7 +8,7 @@
     "format": "prettier schema.d.ts src/**/*.ts --write",
     "build": "npm run build:ts && npm run build:schema",
     "build:ts": "tsc",
-    "build:schema": "typescript-json-schema --required --ignoreErrors schema.d.ts -o schema.json Package",
+    "build:schema": "ts-json-schema-generator --path schema.d.ts -o schema.json --type Package",
     "test": "node ./test/schema_test.js",
     "prepublishOnly": "npm run build"
   },
@@ -33,7 +33,7 @@
     "prettier": "^2.2.1",
     "tslib": "^2.4.0",
     "typescript": "~4.8.0",
-    "typescript-json-schema": "^0.54.0",
+    "ts-json-schema-generator": "^2.4.0",
     "uvu": "^0.5.3"
   }
 }
