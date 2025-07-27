@@ -155,13 +155,16 @@ export interface CustomElementExport {
   deprecated?: boolean | string;
 }
 
+/**
+ * @discriminator kind
+ */
 export type Declaration =
-  | ClassDeclaration
   | FunctionDeclaration
-  | MixinDeclaration
   | VariableDeclaration
-  | CustomElementDeclaration
-  | CustomElementMixinDeclaration;
+  | /** @discriminator customElement */(MixinDeclaration
+  | CustomElementMixinDeclaration)
+  | /** @discriminator customElement */(ClassDeclaration
+  | CustomElementDeclaration)
 
 /**
  * A reference to an export of a module.
