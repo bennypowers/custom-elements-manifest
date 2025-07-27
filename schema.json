@@ -383,7 +383,17 @@
         },
         "members": {
           "items": {
-            "$ref": "#/definitions/ClassMember"
+            "anyOf": [
+              {
+                "$ref": "#/definitions/ClassMethod"
+              },
+              {
+                "$ref": "#/definitions/CustomElementField"
+              },
+              {
+                "$ref": "#/definitions/ClassField"
+              }
+            ]
           },
           "type": "array"
         },
@@ -458,6 +468,69 @@
       ],
       "type": "object"
     },
+    "CustomElementField": {
+      "additionalProperties": false,
+      "description": "Additional metadata for fields on custom elements.",
+      "properties": {
+        "attribute": {
+          "description": "The corresponding attribute name if there is one.\n\nIf this property is defined, the attribute must be listed in the classes' `attributes` array.",
+          "type": "string"
+        },
+        "default": {
+          "type": "string"
+        },
+        "deprecated": {
+          "description": "Whether the property is deprecated. If the value is a string, it's the reason for the deprecation.",
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "description": {
+          "description": "A markdown description of the field.",
+          "type": "string"
+        },
+        "inheritedFrom": {
+          "$ref": "#/definitions/Reference"
+        },
+        "kind": {
+          "const": "field",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "privacy": {
+          "$ref": "#/definitions/Privacy"
+        },
+        "readonly": {
+          "description": "Whether the property is read-only.",
+          "type": "boolean"
+        },
+        "reflects": {
+          "description": "If the property reflects to an attribute.\n\nIf this is true, the `attribute` property must be defined.",
+          "type": "boolean"
+        },
+        "source": {
+          "$ref": "#/definitions/SourceReference"
+        },
+        "static": {
+          "type": "boolean"
+        },
+        "summary": {
+          "description": "A markdown summary suitable for display in a listing.",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/Type"
+        }
+      },
+      "required": [
+        "kind",
+        "name"
+      ],
+      "type": "object"
+    },
     "CustomElementMixinDeclaration": {
       "additionalProperties": false,
       "description": "A class mixin that also adds custom element related properties.",
@@ -522,7 +595,17 @@
         },
         "members": {
           "items": {
-            "$ref": "#/definitions/ClassMember"
+            "anyOf": [
+              {
+                "$ref": "#/definitions/ClassMethod"
+              },
+              {
+                "$ref": "#/definitions/CustomElementField"
+              },
+              {
+                "$ref": "#/definitions/ClassField"
+              }
+            ]
           },
           "type": "array"
         },
